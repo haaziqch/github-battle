@@ -1,24 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api'
-import {FaUser, FaStar, FaCodeBranch, FaExclamationTriangle} from 'react-icons/fa'
+import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle} from 'react-icons/fa'
 import Card from './Card'
 import Loading from './Loading'
 import Tooltip from './Tooltip'
 
-function LanguagesNav({selected, onUpdateLanguage}){
-	const languages = ['All', 'Javascript', 'Ruby', 'Java', 'CSS', 'Python']
+function LanguagesNav ({ selected, onUpdateLanguage }){
+	const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
 	
 		return (
 			<ul className='flex-center'>
 				{languages.map((language) => (
-					<li key = {language}>
-						<button className= 'btn-clear nav-link'
-						 style={language === selected ? {color: 'rgb(187,46,31)' } : null}
-						 onClick={() => onUpdateLanguage(language)}>
-							{language}
+					<li key={language}>
+						<button 
+							className= 'btn-clear nav-link'
+					 		style={language === selected ? { color: 'rgb(187,46,31)' } : null}
+						 	onClick={() => onUpdateLanguage(language)}>
+								{language}
 						</button>
-					</li> 
+					</li>
 				))}
 			</ul>
 		)
@@ -31,15 +32,15 @@ LanguagesNav.propTypes = {
 
 function ReposGrid ({ repos }) {
 	return (
-		<ul className = 'grid space-around'>
-			{repos.map((repo,index) => {
-				const { name, owner, html_url, stargazers_count, forks, open_issues} = repo
+		<ul className='grid space-around'>
+			{repos.map((repo, index) => {
+				const { name, owner, html_url, stargazers_count, forks, open_issues } = repo
 				const { login, avatar_url } = owner
 
 				return (
-						<li key={html_url} className= 'card bg-light'>
+						<li key={html_url}>
 							<Card
-								header={`#${index+1}`}
+								header={ `#${index+1}` }
 								avatar={avatar_url}
 								href={html_url}
 								name={login}
